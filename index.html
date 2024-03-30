@@ -124,7 +124,7 @@
         .section.active p {
             display: block;
         }
-        
+
         .section img {
             max-width: 100%; /* 最大宽度为父元素的宽度 */
             max-height: 300px; /* 最大高度为300像素，可根据需要调整 */
@@ -197,6 +197,35 @@
             display: block;
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* 新增样式：关闭按钮 */
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -243,7 +272,26 @@
     ↑
 </button>
 
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+</div>
+
 <script>
+
+    function openModal(src) {
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("img01");
+        modal.style.display = "block";
+        modalImg.src = src;
+    }
+
+    // 新增函数：关闭模态框
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -324,16 +372,16 @@
 
         // Add new content
         var portfolioContent = `
-        <p>一些合影</p>
+        <p>一些照片</p>
         <p>
-            <img src="images/photo3.jpg" alt="photo 1">
-            <img src="images/photo4.jpg" alt="photo 2">
-            <img src="images/photo6.jpg" alt="photo 3">
+            <img src="images/photo3.jpg" alt="photo1" onclick="openModal(this.src)">
+            <img src="images/photo4.jpg" alt="photo2" onclick="openModal(this.src)">
+            <img src="images/photo6.jpg" alt="photo3" onclick="openModal(this.src)">
         </p>
         <p>汽车模型收藏</p>
-            <img src="images/photo0.jpg" alt="carmodel 1">
-            <img src="images/photo1.jpg" alt="carmodel 2">
-            <img src="images/photo2.jpg" alt="carmodel 3">
+            <img src="images/photo0.jpg" alt="carmodel1" onclick="openModal(this.src)">
+            <img src="images/photo1.jpg" alt="carmodel2" onclick="openModal(this.src)">
+            <img src="images/photo2.jpg" alt="carmodel3" onclick="openModal(this.src)">
         <p>
 
         </p>
