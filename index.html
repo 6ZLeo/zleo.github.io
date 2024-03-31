@@ -18,6 +18,20 @@
             }
         }
 
+        section#skills video {
+            display: none;
+        }
+
+        /* 隐藏视频 */
+        section#skills iframe {
+            width: 0;
+            height: 0;
+            border: none;
+            position: absolute;
+            left: -9999px;
+        }
+
+
         body {
             animation: fadeIn 2s ease-in;
         }
@@ -299,10 +313,19 @@
             <p>好朋友们：</p>
         </div>
     </section>
+
     <section id="skills" class="section" onclick="toggleSection(this)">
         <h2>爱好特长</h2>
         <p>金融与经济行为分析、汽车设计、汽车机械原理、汽车模型收藏、摄影、相机收藏、读书、中国文化、法哲学、数码、数码收藏</p>
+        <!-- 添加Bilibili视频 -->
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1R8411L77x&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1yP4y1F7pV&t=2.5" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1hW4y1s7ih&t=7.5" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1dL4y1F7nM&t=69.9" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
     </section>
+
+
+
     <section id="portfolio" class="section" onclick="toggleSection(this)">
         <h2>照片墙</h2>
         <p>敬请期待</p>
@@ -387,7 +410,21 @@
             case "portfolio":
                 loadPortfolioContent(section);
                 break;
-            // Add cases for other sections as needed
+            case "skills":
+                // Toggle video visibility
+                var video = section.querySelector("iframe");
+                if (section.classList.contains("active")) {
+                    video.style.width = "100%"; // 设置视频宽度为100%
+                    video.style.height = "100%"; // 设置视频高度为100%
+                    video.style.left = "0"; // 将视频移到屏幕内
+                    video.style.position = "static"; // 恢复视频的正常定位
+                } else {
+                    video.style.width = "0"; // 隐藏视频
+                    video.style.height = "0"; // 隐藏视频
+                    video.style.left = "-9999px"; // 将视频移到屏幕外
+                    video.style.position = "absolute"; // 修改视频的定位方式
+                }
+                break;
         }
     }
 
