@@ -7,7 +7,7 @@
     <title>ZLeo先生的个人主页</title>
 
     <style>
-        /* CSS 样式 */
+        /* CSS  */
         /* 开场动画 */
         @keyframes fadeIn {
             from {
@@ -31,11 +31,56 @@
 
         body {
             font-family: Arial, sans-serif;
+            /*自动换背景，帅不帅*/
             background-image: url('https://source.unsplash.com/random/1920x1080');
             background-size: cover;
             background-position: center;
             color: #fff;
             overflow-x: auto;
+        }
+
+        /* header的伪元素 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #cec7c7;
+        }
+
+        /* footer的伪元素 */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        footer::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #cec7c7;
         }
 
         header {
@@ -104,6 +149,19 @@
             text-align: center;
             transition: transform 0.3s;
             cursor: pointer;
+            position: relative; /* 添加position属性 */
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+            border-radius: 10px;
         }
 
         .section:hover {
@@ -137,7 +195,7 @@
             backdrop-filter: blur(10px);
             color: #fff;
             text-align: center;
-            padding: 20px 0;
+            padding: 25px 0;
             width: 100%;
             position: fixed;
             bottom: 0;
@@ -145,16 +203,6 @@
             right: 0;
             z-index: 1000;
             transition: background-color 0.3s;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: rgba(255, 255, 255, 0.7);
         }
 
         .scroll-to-top {
@@ -180,7 +228,7 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        /* 新增样式：隐藏照片 */
+        /* 隐藏照片 */
         .profile-picture {
             display: none;
             max-width: 100%;
@@ -188,7 +236,7 @@
             margin-bottom: 20px;
         }
 
-        /* 新增样式：显示个人情况、教育经历等信息 */
+        /* 显示个人情况、教育经历等信息 */
         .about-details {
             display: none;
         }
@@ -243,17 +291,17 @@
     <section id="about" class="section" onclick="toggleSection(this)">
         <h2>关于我</h2>
         <!-- 显示照片 -->
-        <img src="https://5b0988e595225.cdn.sohucs.com/images/20191027/20769a40350d480e99176641ae9961c4.jpeg" alt="ZLeo的照片" class="profile-picture">
+        <img src="https://img0.baidu.com/it/u=4091680900,1377719018&fm=253&fmt=auto&app=138&f=JPEG?w=1004&h=500" alt="ZLeo的照片" class="profile-picture">
         <!-- 个人情况、教育经历等信息 -->
         <div class="about-details">
-            <p>了解一下我：Hi， 我是ZLeo，一个来自中国北京的21岁男孩。我主要对汽车文化、工业设计、摄影、金融与经济行为感兴趣，涉猎广且浅~<br></p>
+            <p>了解一下我：<br>Hi， 我是ZLeo，一个来自中国北京的21岁男孩。我主要对汽车文化、工业设计、摄影、金融与经济行为感兴趣，涉猎广且浅~<br></p>
             <p>教育经历：<br>2009-2015 北京市海淀实验小学<br>2015 -2018 首都师范大学附属中学<br>2018-2021 首都师范大学附属中学<br>2021-今  北京交通大学</p>
             <p>好朋友们：</p>
         </div>
     </section>
     <section id="skills" class="section" onclick="toggleSection(this)">
         <h2>爱好特长</h2>
-        <p>金融与经济行为分析、汽车设计、汽车模型收藏、摄影、相机收藏、读书、中国文化、法哲学、数码</p>
+        <p>金融与经济行为分析、汽车设计、汽车机械原理、汽车模型收藏、摄影、相机收藏、读书、中国文化、法哲学、数码、数码收藏</p>
     </section>
     <section id="portfolio" class="section" onclick="toggleSection(this)">
         <h2>照片墙</h2>
@@ -261,7 +309,10 @@
     </section>
     <section id="contact" class="section" onclick="toggleSection(this)">
         <h2>联系我</h2>
-        <p>Email: lingtengzeng@bjtu.edu.cn</p>
+        <p>Email for working: lingtengzeng@bjtu.edu.cn</p>
+        <p>Email for living: zenglingteng666@gmail.com</p>
+        <p>Twitter or X: A Secret</p>
+        <p>Instagram: A Secret</p>
         <p>Wechat: A Secret</p>
     </section>
 </main>
@@ -287,7 +338,7 @@
         modalImg.src = src;
     }
 
-    // 新增函数：关闭模态框
+    // 关闭模态框
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
     }
@@ -340,15 +391,12 @@
         }
     }
 
-    // Load About content dynamically
     function loadAboutContent(section) {
-        // Clear existing content
         var content = section.querySelector(".about-details");
         content.innerHTML = "";
 
-        // Add new content
         var aboutContent = `
-                <p>了解一下我：Hi， 我是ZLeo，一个来自中国北京的21岁男孩。我主要对汽车文化、工业设计、摄影、金融与经济行为感兴趣，涉猎广且浅~<br>Hi, I am ZLeo, a 21-year-old boy from Beijing, China. I am mainly interested in automotive culture, industrial design, photography, finance, and economic behavior, with a broad and shallow knowledge~</p>
+                <p>了解一下我：<br>Hi， 我是ZLeo，一个来自中国北京的21岁男孩。我主要对汽车文化、工业设计、摄影、金融与经济行为以及哲学与文化文明感兴趣，涉猎广且浅~<br>Meeeeee:<br>Hi, I am ZLeo, a 21-year-old boy from Beijing, China. I am mainly interested in automotive culture, industrial design, photography, finance, and economic behavior, with a broad and shallow knowledge~</p>
                 <p>教育经历：<br>2009-2015 北京市海淀实验小学<br>2015 -2018 首都师范大学附属中学<br>2018-2021 首都师范大学附属中学<br>2021-今  北京交通大学<br>Education experience:<br>2009-2015 Haidian District Experimental Primary School, Beijing<br>2015-2018 Capital Normal University High School, Beijing<br>2018-2021 Capital Normal University High School, Beijing<br> 2021-present Beijing Jiaotong University</p>
                 <p>THE FRIENDS：<br><a href="https://v.douyin.com/iFTg4MW7/">@一级舔狗</a></p>
                 <p><a href="https://v.douyin.com/iFotPK8h/">@山谷_</a></p>
@@ -356,7 +404,7 @@
             `;
         content.innerHTML = aboutContent;
 
-        // Display or hide profile picture
+        //展开、收起照片
         var profilePicture = section.querySelector(".profile-picture");
         if (section.classList.contains("active")) {
             profilePicture.style.display = "block";
@@ -365,13 +413,12 @@
         }
     }
 
-    // Load Portfolio content dynamically
+    // 动态加载
     function loadPortfolioContent(section) {
         // Clear existing content
         var content = section.querySelector("p");
         content.innerHTML = "";
 
-        // Add new content
         var portfolioContent = `
         <p>一些照片</p>
         <p>
@@ -392,7 +439,7 @@
     }
 
 
-    // Change header background on scroll
+    // 滚动时隐藏导航栏
     var prevScrollPos = window.pageYOffset;
     var header = document.querySelector("header");
     window.onscroll = function () {
